@@ -36,6 +36,10 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("POST /Patient", patientHandler.Create)
 	mux.HandleFunc("GET /Patient/{id}", patientHandler.Read)
+	mux.HandleFunc("PUT /Patient/{id}", patientHandler.Update)
+	mux.HandleFunc("DELETE /Patient/{id}", patientHandler.Delete)
+	mux.HandleFunc("GET /Patient", patientHandler.Search)
+
 
 	log.Printf("Listening on port %s", cfg.Port)
 	if err := http.ListenAndServe(":"+cfg.Port, mux); err != nil {
